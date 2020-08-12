@@ -4,7 +4,7 @@
 
 1. 加入了 `antd`, `axios`, `dayjs`, `mobx`
 2. 采用了 `typescript` 构建
-3. 项目进行了按需引入，打包压缩去除注释，别名配置，`sass/less` 模块化支持、以及暴露了自定义 `webpack` 配置入口
+3. 项目进行了按需引入，组件懒加载，打包压缩去除注释，别名配置，`sass/less` 模块化支持、以及暴露了自定义 `webpack` 配置入口
 4. 配置了开发代理，见 `src\setupProxy.js`
 5. 配置了基本的 `axios` 拦截响应
 6. 配置了 `store`
