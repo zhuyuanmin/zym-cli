@@ -34,7 +34,7 @@ program
         
         inquirer
             .prompt([
-				{
+		{
                     type: 'input',
                     name: 'name',
                     message: '请输入项目名称：',
