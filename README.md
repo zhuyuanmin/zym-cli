@@ -23,7 +23,7 @@
 $ cd zym-cli
 $ npm install
 $ npm link
-当前目录使用：$ npx zym create <projectName>
+任意目录可使用：$ npx zym create <projectName>
 ```
 
 > yarn
