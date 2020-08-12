@@ -1,0 +1,23 @@
+{
+  "name": "zym-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "zym": "bin/index.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.20.0",
+    "download-git-repo": "^2.0.0",
+    "handlebars": "^4.1.2",
+    "inquirer": "^6.5.0",
+    "ora": "^3.4.0"
+  }
+}
