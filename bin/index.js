@@ -134,7 +134,7 @@ program
                         spinner.succeed()
 
                         console.log('正在安装依赖...')
-                        cp.exec(`cd ${projectName} && ${params.mode} install`, function (error) {
+                        cp.exec(`cd ${projectName} && ${params.mode === 'npm' ? 'npm install' : 'yarn'}`, function (error) {
                             if (error) {
                                 console.error(`执行的错误: ${error}`)
                                 return
