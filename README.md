@@ -13,7 +13,7 @@
 
 ### Download
 
-$ git clone https://github.com/zhuyuanmin/zym-cli.git
+`$ git clone https://github.com/zhuyuanmin/zym-cli.git`
 
 ### Usage
 
