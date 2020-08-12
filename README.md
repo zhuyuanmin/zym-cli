@@ -20,18 +20,18 @@
 > npm
 
 ```bash
-cd zym-cli
-npm install
-npm link
-当前目录使用：npx zym create <projectName>
+$ cd zym-cli
+$ npm install
+$ npm link
+当前目录使用：$ npx zym create <projectName>
 ```
 
 > yarn
 
 ```bash
-cd zym-cli
-yarn
-yarn link
-任意目录可使用：zym create <projectName>
+$ cd zym-cli
+$ yarn
+$ yarn link
+任意目录可使用：$ zym create <projectName>
 ```
 
