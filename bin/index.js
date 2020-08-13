@@ -20,8 +20,7 @@ const fs = require('fs')
 const path = require('path')
 
 const downloadUrl = 'direct:https://github.com/zhuyuanmin/my-typescript-react-demo.git'
-const downloadUrl2 =
-    'direct:https://github.com/zhuyuanmin/my-typescript-react-demo.git#redux-version'
+const downloadUrl2 = 'direct:https://github.com/zhuyuanmin/my-typescript-react-demo.git#redux-version'
 
 program
     .version('0.1.1', '-v, --version')
@@ -69,7 +68,7 @@ program
                     message: '请选择以下依赖安装方式：',
                     choices: ['npm', 'yarn'],
                     default: 'npm',
-                },
+                }
             ])
             .then(function (answers) {
                 const params = {
@@ -150,7 +149,6 @@ program
                             
                         })
                     }
-                    
                 })
             })
     })
