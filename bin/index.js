@@ -106,6 +106,11 @@ program
                         const package = handlebars.compile(packageStr)(params)
                         fs.writeFileSync(packagePath, package)
 
+                        const cssPath = `${projectName}/src/index.tsx`
+                        const cssStr = fs.readFileSync(cssPath, 'utf-8')
+                        const packCompile = handlebars.compile(cssStr)({ suffix: params.sass ? 'scss' : 'less' })
+                        fs.writeFileSync(cssPath, packCompile)
+
                         if (params.sass) {
                             // 由于国内网络原因，node-sass可能需要翻墙才能下载
                             // 所以如果用户选择了sass预处理器则需要创建.npmrc文件
@@ -121,6 +126,9 @@ program
                         spinner.text = '下载成功'
                         spinner.color = '#13A10E'
                         spinner.succeed()
+
+                        const dir = `${path.join(process.cwd(), projectName)}\\src`
+                        fs.renameSync(`${dir}\\App`, `${dir}\\App${params.sass ? '.scss' : '.less'}`)
 
                         console.log('')
                         const spinner2 = ora('正在安装依赖...').start()
