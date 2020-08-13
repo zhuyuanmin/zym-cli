@@ -141,11 +141,11 @@ program
                                 console.log('')
                                 // 提示运行开发环境
                                 console.log(' # Compiles and hot-reloads for development')
-                                console.log(chalk.gray('   $ ') + chalk.blue(`${params.mode} start`))
+                                console.log(chalk.gray('   $ ') + chalk.green(`${params.mode} start`))
                                 console.log('')
                                 // 提示打包生产环境代码
                                 console.log(' # Compiles and minifies for production')
-                                console.log(chalk.gray('   $ ') + chalk.blue(params.mode === 'npm' ? 'npm run build' : 'yarn build'))
+                                console.log(chalk.gray('   $ ') + chalk.green(params.mode === 'npm' ? 'npm run build' : 'yarn build'))
                             }
 
                         })
