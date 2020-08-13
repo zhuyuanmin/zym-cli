@@ -58,7 +58,7 @@ program
                 {
                     type: 'list',
                     name: 'storeList',
-                    message: '请选择以下状态管理：',
+                    message: '请选择以下状态管理器：',
                     choices: ['mobx', 'redux'],
                     default: 'mobx',
                 },
