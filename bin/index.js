@@ -123,7 +123,7 @@ program
                         spinner.color = '#13A10E'
                         spinner.succeed()
 
-			console.log('')
+			            console.log('')
                         const spinner2 = ora('正在安装依赖...').start()
                         cp.exec(`cd ${projectName} && ${params.mode === 'npm' ? 'npm install' : 'yarn'}`, function (error, stdout) {
                             if (error) {
