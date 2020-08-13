@@ -20,7 +20,8 @@ const fs = require('fs')
 const path = require('path')
 
 const downloadUrl = 'direct:https://github.com/zhuyuanmin/my-typescript-react-demo.git'
-const downloadUrl2 = 'direct:https://github.com/zhuyuanmin/my-typescript-react-demo.git#redux-version'
+const downloadUrl2 =
+    'direct:https://github.com/zhuyuanmin/my-typescript-react-demo.git#redux-version'
 
 program
     .version('0.1.1', '-v, --version')
@@ -32,10 +33,10 @@ program
             console.log(chalk.red('error: 存在同名文件夹，无法继续创建项目！'))
             return
         }
-        
+
         inquirer
             .prompt([
-				{
+                {
                     type: 'input',
                     name: 'name',
                     message: '请输入项目名称：',
@@ -52,7 +53,7 @@ program
                 },
                 {
                     type: 'confirm',
-                    name: 'cssStyle', 
+                    name: 'cssStyle',
                     message: '是否使用sass(默认less)：',
                 },
                 {
@@ -68,7 +69,7 @@ program
                     message: '请选择以下依赖安装方式：',
                     choices: ['npm', 'yarn'],
                     default: 'npm',
-                }
+                },
             ])
             .then(function (answers) {
                 const params = {
@@ -111,8 +112,7 @@ program
                             // 所以如果用户选择了sass预处理器则需要创建.npmrc文件
                             // 并写入node-sass的代理下载地址
                             const npmrcPath = `${projectName}/.npmrc`
-                            const appendContent =
-                                '\r\nsass_binary_site=https://npm.taobao.org/mirrors/node-sass/'
+                            const appendContent = '\r\nsass_binary_site=https://npm.taobao.org/mirrors/node-sass/'
                             if (!fs.existsSync(npmrcPath)) {
                                 fs.writeFileSync(npmrcPath, appendContent)
                             } else {
@@ -123,7 +123,7 @@ program
                         spinner.color = '#13A10E'
                         spinner.succeed()
 
-			            console.log('')
+                        console.log('')
                         const spinner2 = ora('正在安装依赖...').start()
                         cp.exec(`cd ${projectName} && ${params.mode === 'npm' ? 'npm install' : 'yarn'}`, function (error, stdout) {
                             if (error) {
@@ -133,7 +133,7 @@ program
                                 spinner2.text = '安装完成'
                                 spinner2.color = '#13A10E'
                                 spinner2.succeed()
-                                
+
                                 console.log('')
                                 // 提示进入下载的目录
                                 console.log(' # cd into Project')
@@ -147,9 +147,10 @@ program
                                 console.log(' # Compiles and minifies for production')
                                 console.log(chalk.gray('   $ ') + chalk.green(params.mode === 'npm' ? 'npm run build' : 'yarn build'))
                             }
-
+                            
                         })
                     }
+                    
                 })
             })
     })
