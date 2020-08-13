@@ -137,7 +137,7 @@ program
                                 console.log('')
                                 // 提示进入下载的目录
                                 console.log(' # cd into Project')
-                                console.log(chalk.gray('   $ ') + chalk.blue(`cd ${projectName}`))
+                                console.log(chalk.gray('   $ ') + chalk.green(`cd ${projectName}`))
                                 console.log('')
                                 // 提示运行开发环境
                                 console.log(' # Compiles and hot-reloads for development')
