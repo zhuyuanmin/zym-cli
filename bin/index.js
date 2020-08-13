@@ -20,6 +20,7 @@ const fs = require('fs')
 const path = require('path')
 
 const downloadUrl = 'direct:https://github.com/zhuyuanmin/my-typescript-react-demo.git'
+const downloadUrl2 = 'direct:https://github.com/zhuyuanmin/my-typescript-react-demo.git#redux-version'
 
 program
     .version('0.1.1', '-v, --version')
@@ -34,7 +35,7 @@ program
         
         inquirer
             .prompt([
-		{
+				{
                     type: 'input',
                     name: 'name',
                     message: '请输入项目名称：',
@@ -47,36 +48,27 @@ program
                 {
                     type: 'input',
                     name: 'author',
-                    message: '请输入项目作者',
+                    message: '请输入项目作者：',
                 },
                 {
                     type: 'confirm',
-                    name: 'cssStyle',
-                    message: '是否使用less/node-sass：',
+                    name: 'cssStyle', 
+                    message: '是否使用sass(默认less)：',
                 },
                 {
                     type: 'list',
-                    message: '请选择以下css预处理器:',
-                    name: 'preprocessor',
-                    choices: ['less', 'sass'],
-                    when: function (answers) {
-                        return answers.cssStyle
-                    },
-                },
-                {
-                    type: 'confirm',
-                    name: 'installMode',
-                    message: '使用npm还是yarn安装：',
+                    name: 'storeList',
+                    message: '请选择以下状态管理：',
+                    choices: ['mobx', 'redux'],
+                    default: 'mobx',
                 },
                 {
                     type: 'list',
-                    message: '请选择以下依赖安装方式:',
                     name: 'installList',
+                    message: '请选择以下依赖安装方式：',
                     choices: ['npm', 'yarn'],
-                    when: function (answers) {
-                        return answers.installMode
-                    },
-                },
+                    default: 'npm',
+                }
             ])
             .then(function (answers) {
                 const params = {
@@ -86,26 +78,24 @@ program
                 }
                 // 为了配合antd修改，less 默认会安装
                 if (answers.cssStyle) {
-                    //用户选择使用css预处理器
-                    if (answers.preprocessor === 'sass') {
-                        // 用户选择使用sass
-                        params.sass = true
-                    }
+                    params.sass = true
                 }
 
-                if (answers.installMode) {
-                    if (answers.installList === 'npm') {
-                        params.mode = 'npm'
-                    } else {
-                        params.mode = 'yarn'
-                    }
-                } else {
+                if (answers.installList === 'npm') {
                     params.mode = 'npm'
+                } else {
+                    params.mode = 'yarn'
+                }
+
+                if (answers.storeList === 'redux') {
+                    params.store = 'redux'
+                } else {
+                    params.store = 'mobx'
                 }
 
                 console.log('')
                 const spinner = ora('正在下载中...').start()
-                download(downloadUrl, projectName, { clone: true }, err => {
+                download(params.store === 'mobx' ? downloadUrl : downloadUrl2, projectName, { clone: true }, err => {
                     if (err) {
                         console.log(err)
                         spinner.text = '下载失败'
@@ -133,25 +123,30 @@ program
                         spinner.color = '#13A10E'
                         spinner.succeed()
 
-                        console.log('正在安装依赖...')
-                        cp.exec(`cd ${projectName} && ${params.mode === 'npm' ? 'npm install' : 'yarn'}`, function (error) {
+                        const spinner2 = ora('正在安装依赖...').start()
+                        cp.exec(`cd ${projectName} && ${params.mode === 'npm' ? 'npm install' : 'yarn'}`, function (error, stdout) {
                             if (error) {
                                 console.error(`执行的错误: ${error}`)
                                 return
+                            } else if (stdout) {
+                                spinner2.text = '安装完成'
+                                spinner2.color = '#13A10E'
+                                spinner2.succeed()
+                                
+                                console.log('')
+                                // 提示进入下载的目录
+                                console.log(' # cd into Project')
+                                console.log(chalk.gray('   $ ') + chalk.blue(`cd ${projectName}`))
+                                console.log('')
+                                // 提示运行开发环境
+                                console.log(' # Compiles and hot-reloads for development')
+                                console.log(chalk.gray('   $ ') + chalk.blue(`${params.mode} start`))
+                                console.log('')
+                                // 提示打包生产环境代码
+                                console.log(' # Compiles and minifies for production')
+                                console.log(chalk.gray('   $ ') + chalk.blue(params.mode === 'npm' ? 'npm run build' : 'yarn build'))
                             }
 
-                            console.log('')
-                            // 提示进入下载的目录
-                            console.log(' # cd into Project')
-                            console.log(chalk.gray('   $ ') + chalk.blue(`cd ${projectName}`))
-                            console.log('')
-                            // 提示运行开发环境
-                            console.log(' # Compiles and hot-reloads for development')
-                            console.log(chalk.gray('   $ ') + chalk.blue(`${params.mode} start`))
-                            console.log('')
-                            // 提示打包生产环境代码
-                            console.log(' # Compiles and minifies for production')
-                            console.log(chalk.gray('   $ ') + chalk.blue(params.mode === 'npm' ? 'npm run build' : 'yarn build'))
                         })
                     }
                 })
