@@ -2,7 +2,7 @@
 
 在 `create-react-demo` 创建的项目基础上加入了以下功能，可满足绝大多数日常项目开发：
 
-1. 加入了 `antd`, `axios`, `dayjs`, `mobx`
+1. 加入了 `antd`, `axios`, `dayjs`
 2. 采用了 `typescript` 构建
 3. 项目进行了按需引入，组件懒加载，打包压缩去除注释，别名配置，`sass/less` 模块化支持、以及暴露了自定义 `webpack` 配置入口
 4. 配置了开发代理，见 `src\setupProxy.js`
