@@ -146,7 +146,6 @@ program
                                 console.log(' # Compiles and minifies for production')
                                 console.log(chalk.gray('   $ ') + chalk.green(params.mode === 'npm' ? 'npm run build' : 'yarn build'))
                             }
-                            
                         })
                     }
                 })
