@@ -72,7 +72,7 @@ program
             ])
             .then(function (answers) {
                 const params = {
-                    name: answers.name,
+                    name: answers.name || projectName,
                     description: answers.description,
                     author: answers.author,
                 }
