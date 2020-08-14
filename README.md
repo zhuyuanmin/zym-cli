@@ -11,6 +11,7 @@
 7. 处理了 `router` 的嵌套配置
 8. 添加了常见的 `.gitignore` 及 `.npmrc` 文件
 9. 支持 `mobx` 和 `redux` 状态管理器选择
+10. 加入了 `polyfill` 和 `antd` 组件国际化处理
 
 ### Download
 
