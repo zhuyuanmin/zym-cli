@@ -1,6 +1,6 @@
 ### 特点
 
-在 `create-react-demo` 创建的项目基础上加入了以下功能，可满足绝大多数日常项目开发：
+在 `create-react-app` 创建的项目基础上加入了以下功能，可满足绝大多数日常项目开发：
 
 1. 加入了 `antd`, `axios`, `dayjs`
 2. 采用了 `typescript` 构建
