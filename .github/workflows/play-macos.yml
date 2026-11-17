@@ -1,0 +1,21 @@
+name: Play macOS
+
+on:
+  workflow_dispatch:        # 只手动触发，不会自动跑
+
+jobs:
+  mac:
+    runs-on: macos-latest
+    timeout-minutes: 120    # 最长挂 60 分钟，到点自动结束
+    steps:
+      - name: 查看系统信息
+        run: |
+          sw_vers
+          uname -a
+          xcodebuild -version || echo "no xcode"
+          df -h /
+
+      - name: 打开交互式 tmate 终端
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-to-1-connection: true
